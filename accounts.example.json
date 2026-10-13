@@ -1,0 +1,13 @@
+[
+    {
+        "name": "main",
+        "refreshToken": "",
+        "games": [381210, 1332010],
+        "invisible": false
+    },
+    {
+        "name": "second",
+        "refreshToken": "",
+        "games": [105600]
+    }
+]

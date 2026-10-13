@@ -3,28 +3,48 @@ const qrcodeTerminal = require('qrcode-terminal');
 const asciiart = require('asciiart-logo');
 const packageInfo = require("../../package.json");
 
+const format = message => {
+    if (Object.prototype.toString.call(message) === "[object Error]") return message.message;
+
+    return message;
+};
+
 module.exports.success = message => {
-    return console.log(`[${chalk.green('SUCCESS')}] ${chalk.green(message)}`);
+    return console.log(`[${chalk.green('SUCCESS')}] ${chalk.green(format(message))}`);
 };
 
 module.exports.error = message => {
-    if (Object.prototype.toString.call(message) === "[object Error]") {
-        return console.log(`[${chalk.red('ERROR')}] ${chalk.red(message.message)}`);
-    };
-
-    return console.log(`[${chalk.red('ERROR')}] ${chalk.red(message)}`);
+    return console.log(`[${chalk.red('ERROR')}] ${chalk.red(format(message))}`);
 };
 
 module.exports.info = message => {
-    return console.log(`[${chalk.blue('INFO')}] ${chalk.blue(message)}`);
+    return console.log(`[${chalk.blue('INFO')}] ${chalk.blue(format(message))}`);
 };
 
 module.exports.warn = message => {
-    return console.log(`[${chalk.yellow('WARN')}] ${chalk.yellow(message)}`);
+    return console.log(`[${chalk.yellow('WARN')}] ${chalk.yellow(format(message))}`);
 };
 
 module.exports.debug = message => {
-    return console.log(`[${chalk.gray('DEBUG')}] ${chalk.gray(message)}`);
+    return console.log(`[${chalk.gray('DEBUG')}] ${chalk.gray(format(message))}`);
+};
+
+/**
+ * Create a logger that prefixes every message with the given name.
+ *
+ * @param {string} name
+ * @returns {{success: Function, error: Function, info: Function, warn: Function, debug: Function}}
+ */
+module.exports.scope = name => {
+    const prefix = message => `[${name}] ${format(message)}`;
+
+    return {
+        success: message => module.exports.success(prefix(message)),
+        error: message => module.exports.error(prefix(message)),
+        info: message => module.exports.info(prefix(message)),
+        warn: message => module.exports.warn(prefix(message)),
+        debug: message => module.exports.debug(prefix(message)),
+    };
 };
 
 module.exports.clear = () => {
