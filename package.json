@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/JakyeRU/SteamIdler.git"
+    "url": "git+https://github.com/ValentinNeaga/SteamIdler.git"
   },
-  "author": "JakyeRU",
+  "author": "ValentinNeaga",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/JakyeRU/SteamIdler/issues"
+    "url": "https://github.com/ValentinNeaga/SteamIdler/issues"
   },
-  "homepage": "https://github.com/JakyeRU/SteamIdler#readme",
+  "homepage": "https://github.com/ValentinNeaga/SteamIdler#readme",
   "dependencies": {
     "asciiart-logo": "^0.2.7",
     "chalk": "^4.1.2",
