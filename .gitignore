@@ -107,3 +107,5 @@ dist
 .idea/
 
 data/
+accounts.json
+accounts.json.tmp

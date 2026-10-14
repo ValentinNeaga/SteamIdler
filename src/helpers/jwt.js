@@ -14,3 +14,11 @@ module.exports.getExpiration = (token) => {
         expiresInMilliseconds: expires - now,
     };
 };
+
+module.exports.getSubject = (token) => {
+    try {
+        return JSON.parse(Buffer.from(token.split('.')[1], 'base64').toString('utf8')).sub;
+    } catch (error) {
+        return null;
+    }
+};
